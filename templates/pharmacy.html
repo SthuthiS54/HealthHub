@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<style>
+    h2 {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .table-bordered {
+        border: 1px solid #ddd !important;
+    }
+
+    table caption {
+        padding: .5em 0;
+    }
+
+    @media screen and (max-width: 767px) {
+        table caption {
+            display: none;
+        }
+    }
+
+    .p {
+        text-align: center;
+        padding-top: 140px;
+        font-size: 14px;
+    }
+
+    th {
+        text-align: center;
+    }
+</style>
+
+<br><br><br>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xs-12">
+            <h2>Pharmacy Details</h2>
+            <div class="table-responsive" data-pattern="priority-columns">
+                <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality"
+                    class="table table-bordered table-hover">
+                    <thead>
+                        <th>Medicine_ID</th>
+                        <th>General Name</th>
+                        <th>Scientific Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </thead>
+                    <tbody>
+                        {% for medicine in pharmacy %}
+                        <tr>
+                            <td>{{ medicine.med_no }}</td>
+                            <td>{{ medicine.med_gen_name }}</td>
+                            <td>{{ medicine.med_scientific_name }}</td>
+                            <td>{{ medicine.med_qty }}</td>
+                            <td>{{ medicine.med_price }}</td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div><!-- end of .table-responsive -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

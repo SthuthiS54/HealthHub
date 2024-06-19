@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+
+{%block content%}
+<title>Billing Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        padding-top: 140px;
+    }
+    .contain {
+        max-width: 800px; /* Adjusted max-width for better fitting */
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+        display: flex; /* Changed to flex for better alignment */
+        justify-content: space-between; /* Added for even spacing between elements */
+        align-items: center; /* Added for vertical alignment */
+    }
+    .form-group label {
+        flex: 1; /* Added flex property for labels to take equal space */
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .form-group input {
+        flex: 2; /* Added flex property for input fields to take more space */
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    .remove-btn {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 15px;
+        cursor: pointer;
+    }
+    .remove-btn:hover {
+        background-color: #ff3333;
+    }
+    .add-btn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+    .add-btn:hover {
+        background-color: #45a049;
+    }
+    /* Styling for submit button */
+    input[type="submit"] {
+        background-color: #008CBA;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        flex: 1; /* Added flex property to submit button for better alignment */
+        margin-top: 20px; /* Added margin to separate submit button from other elements */
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #005f75;
+    }
+</style>
+    
+<div class="contain">
+    <h2>Billing Form</h2>
+    <form id="billing-form" action="{{ url_for('sell') }}" method="POST">
+        {{ form.csrf_token }}
+        <div class="medicines">
+            {% for subform in form.medicines %}
+            <div class="form-group">
+                <label for="{{ subform.med_no.id }}">{{ subform.med_no.label }}</label>
+                {{ subform.med_no }}
+                <label for="{{ subform.med_qty.id }}">{{ subform.med_qty.label }}</label>
+                {{ subform.med_qty }}
+            </div>
+            {% endfor %}
+        </div>
+        <button type="button" class="add-btn" id="add-medicine">Add Medicine</button>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+    
+<script>
+    function addMedicine() {
+    console.log('Adding new medicine...');
+    const medicinesDiv = document.getElementById('medicines');
+    console.log('Medicines container:', medicinesDiv);
+    
+    const newMedicineDiv = document.createElement('div');
+    newMedicineDiv.classList.add('medicine');
+    newMedicineDiv.innerHTML = `
+        <label for="med_no">ID:</label>
+        <input type="number" name="med_no[]" required>
+        <label for="med_qty">Quantity:</label>
+        <input type="number" name="med_qty[]" required>
+    `;
+    
+    console.log('New medicine div:', newMedicineDiv);
+    
+    medicinesDiv.appendChild(newMedicineDiv);
+}
+
+    // Function to remove a medicine input field
+    function removeMedicine(btn) {
+        const medicineDiv = btn.parentNode;
+        const medicinesDiv = medicineDiv.parentNode;
+        medicinesDiv.removeChild(medicineDiv);
+    }
+
+    // Add event listener for adding medicine
+    document.addEventListener('click', function(event) {
+        if (event.target && event.target.id === 'add-medicine') {
+            addMedicine();
+        }
+    });
+
+    // Add event listener for removing medicine
+    document.addEventListener('click', function(event) {
+        if (event.target && event.target.classList.contains('remove-btn')) {
+            removeMedicine(event.target);
+        }
+    });
+</script>
+
+{% endblock content %}

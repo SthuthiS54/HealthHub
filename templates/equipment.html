@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<style>
+    h2 {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .table-bordered {
+        border: 1px solid #ddd !important;
+    }
+
+    table caption {
+        padding: .5em 0;
+    }
+
+    @media screen and (max-width: 767px) {
+        table caption {
+            display: none;
+        }
+    }
+
+    .p {
+        text-align: center;
+        padding-top: 140px;
+        font-size: 14px;
+    }
+
+    th {
+        text-align: center;
+    }
+</style>
+
+<br><br><br>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xs-12">
+            <h2>Equipment Details</h2>
+            <div class="table-responsive" data-pattern="priority-columns">
+                <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality"
+                    class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                        <th>Equipment ID</th>
+                        <th>Equipment Name</th>
+                        <th>Equipment Cost</th>
+                        <th>Equipment Quantity</th>
+                        <th>Room ID</th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for equipment in equipment %}
+            <tr>
+                <td>{{equipment.equip_id }}</td>
+                <td>{{equipment.equip_name }}</td>
+                <td>{{equipment.equip_cost}}</td>
+                <td>{{equipment.equip_qty}}</td>
+                <td>{{equipment.roomid}}</td>
+                <!-- Add more columns as needed -->
+            </tr>
+            {% endfor %}
+                    </tbody>
+
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div><!-- end of .table-responsive -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}

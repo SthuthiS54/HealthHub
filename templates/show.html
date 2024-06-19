@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+<title>Billing Details</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        padding-top:140px;
+    }
+    .contain {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        margin-top: 0;
+    }
+    .bill-details {
+        margin-bottom: 20px;
+    }
+    .bill-details p {
+        margin: 5px 0;
+    }
+    .total-price {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+</style>
+</head>
+<body>
+    <div class="contain">
+        <h2>Billing Details</h2>
+        <div class="bill-details">
+            <p>Medicine(s) sold successfully!</p>
+            <p>Total Cost: <span class="total-price">${{ total_price }}</span></p>
+        </div>
+        <a href="{{ url_for('sell') }}" class="btn btn-primary">Back to Billing</a>
+    </div>
+{% endblock content %}

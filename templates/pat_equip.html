@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Medicine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right:auto;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #qr_code_placeholder {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #qr_code_placeholder img {
+            max-width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Transaction</h1>
+    <form action="{{ url_for('equip_session') }}" method="POST">
+        <label for="patient_id">Patient ID:</label>
+        <input type="text" id="patient_id" name="patient_id" required>
+        <h3>QR Code to Pay the Bill</h3>
+            <div id="qr_code_placeholder">
+                <img src="{{ url_for('generate_qr') }}" alt="QR Code">
+            </div>
+                <label for="total_equip_price">Total Price:</label>
+                <input type="text" id="total_equip_price" name="total_equip_price" value="{{ total_equip_price }}" readonly>
+            </div>
+               <p><button type="submit">Done</button></p>
+            
+    </form>
+    
+</body>
+</html>

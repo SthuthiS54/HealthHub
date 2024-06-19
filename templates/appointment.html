@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+    /* Custom CSS for Appointment Form */
+    .form-container {
+        margin-top: 50px;
+    }
+    
+    .appointment-wrap {
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .appointment-form {
+        padding: 30px;
+    }
+
+    .form-control:focus {
+     color: #000000;
+     background-color: #ffffff;
+     border: 3px solid #17ae35;
+     outline: 0;
+     box-shadow: 2px 2px 10px grey;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+    
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    /* Highlight effect */
+    .form-group input[type="text"]:focus + label,
+    .form-group input[type="date"]:focus + label,
+    .form-group select:focus + label {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+</style>
+
+<div><h1>Appointment Form</h1></div>
+<div class="container form-container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="appointment-wrap bg-white p-4 p-md-5 d-flex align-items-center">
+                <form action="{{ url_for('create_appointment', doc_id=doc_id, patient_id=patient_id) }}" class="appointment-form ftco-animate" method="post">
+
+                    {{ form.csrf_token }}
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    <div class="form-group">
+                        {{ form.appointment_date.label }}
+                        {{ form.appointment_date(class='form-control', id='appointment_date') }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.appointment_time.label }}
+                        {{ form.appointment_time(class='form-control', id='appointment_time') }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.submit() }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

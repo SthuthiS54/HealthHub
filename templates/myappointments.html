@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>My Appointments</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Doctor Name</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.doctor_name }}</td>
+                <td>{{ appointment.appointment_date }}</td>
+                <td>{{ appointment.appointment_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

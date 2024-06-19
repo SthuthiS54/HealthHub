@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<style>
+    h2 {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .table-bordered {
+        border: 1px solid #ddd !important;
+    }
+
+    table caption {
+        padding: .5em 0;
+    }
+
+    @media screen and (max-width: 767px) {
+        table caption {
+            display: none;
+        }
+    }
+
+    .p {
+        text-align: center;
+        padding-top: 140px;
+        font-size: 14px;
+    }
+
+    th {
+        text-align: center;
+    }
+</style>
+
+<br><br><br>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xs-12">
+            <h2>Our Doctors...</h2>
+            <div class="table-responsive" data-pattern="priority-columns">
+                <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality"
+                    class="table table-bordered table-hover">
+                    <thead>
+                        <th>Doctor ID</th>
+            <th>Doctor Name </th>
+            <th>Doctor Address</th>
+            <th>Doctor Age </th>
+            <th>Doctor Gender</th>
+            <!-- <th>Doctor Remuneration</th> -->
+            <th>Doctor Specialisation</th>
+            <th>Book Now</th>
+            <!-- <th>Doctor Cabin No</th>
+            <th>Doctor Floor No</th> -->
+
+                    </thead>
+                    <tbody>
+                        {% for doctor in doctors %}
+                <tr>
+                    <td>{{ doctor.doc_id }}</td>
+                    <td>{{ doctor.doc_name }}</td>
+                    <td>{{ doctor.doc_address }}</td>
+                    <td>{{ doctor.doc_age }}</td>
+                    <td>{{ doctor.doc_gender }}</td>
+                    
+                    <!-- <td>{{ doctor.doc_remuneration }}</td> -->
+                    <td>{{ doctor.doc_specialisation }}</td>
+                    ...
+                    <td><a href="{{ url_for('appointment', doc_id=doctor.doc_id) }}" class="btn btn-primary">Book Now</a></td>
+...
+
+                    <!-- <td>{{ doctor.doc_cabin_no }}</td>
+                    <td>{{ doctor.doc_floorno }}</td> -->
+                </tr>
+                {% endfor %}
+
+                    </tbody>
+
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div><!-- end of .table-responsive -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

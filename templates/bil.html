@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<style>
+    h2 {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .table-bordered {
+        border: 1px solid #ddd !important;
+    }
+
+    table caption {
+        padding: .5em 0;
+    }
+
+    @media screen and (max-width: 767px) {
+        table caption {
+            display: none;
+        }
+    }
+
+    .p {
+        text-align: center;
+        padding-top: 140px;
+        font-size: 14px;
+    }
+
+    th {
+        text-align: center;
+    }
+</style>
+
+<br><br><br>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xs-12">
+            <h2>Billing Details</h2>
+            <div class="table-responsive" data-pattern="priority-columns">
+                <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality"
+                    class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Bill No</th>
+                            <th>Patient ID</th>
+                            <th>Bill Amount</th>
+                            <th>Transaction ID</th>
+                            <th>Medicine bill </th>
+                            <th>Equipment Bill</th>
+                            
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for bill in billing %}
+                        <tr>
+                            <td>{{bill.bill_no }}</td>
+                            <td>{{bill.patient_id }}</td>
+                            <td>{{bill.b_amount}}</td>
+                            <td>{{bill.transaction_id}}</td>
+                            <td>{{bill.b_medicine}}</td>
+                            <td>{{bill.b_equipment}}</td>
+                            
+                        </tr>
+                        {% endfor %}
+            
+                    </tbody>
+
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div><!-- end of .table-responsive -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}

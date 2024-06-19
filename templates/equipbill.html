@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.img{
+    height:100vh;
+    background-image: url('/static/images/bg_img.png');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    filter:blur(5px);
+    z-index:-1;
+}
+
+h2{
+  padding-top: 1.5rem;
+}
+
+a{
+  color:#000000;
+}
+
+a:hover{
+  color: #60da57;
+  text-decoration: none;
+}
+
+.form-control{
+  background-color: #f8f9fa;
+  padding: 5px;
+  margin-bottom: 1.3rem;
+}
+
+.container1 {
+    font-weight: bold;
+    height: 300px;
+    width: 400px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column; /* Adjust flex direction to stack elements vertically */
+    align-items: center; /* Center align items horizontally */
+    justify-content: space-around;
+    border: 2px solid black;
+    border-radius: 10px;
+    position: absolute;
+    top: 24%;
+    left: 35%;
+    right: 15%;
+    bottom: 25%;
+    z-index: 2;
+}
+
+.form-row {
+    display: flex;
+    width: 600px;
+    justify-content: space-between; /* Adjust spacing between form fields */
+}
+
+.form-group {
+    flex: 1; /* Make each form group take equal width within the container */
+    margin-right: 11px; /* Add margin between form groups */
+}
+
+.box:hover{
+    box-shadow: 2px 2px 10px grey; 
+}  
+
+
+.form-control:focus {
+
+    color: #000000;
+    background-color: #ffffff;
+    border: 3px solid #17ae35;
+    outline: 0;
+    box-shadow: 2px 2px 10px grey;
+
+}
+
+.btn{
+    color: white;
+  padding: 0.6rem 1.2rem;
+  background: #da5767;
+  border: 2px solid #da5767;
+}
+
+.btn-primary:hover { 
+    color: white;  
+    background-color: rgb(14, 204, 14);
+    border-color: white;
+    transition: .3s;
+
+}
+
+.form-control::placeholder{
+    height: 5px;
+    width: 100px;
+    font-size: 15px;
+}
+
+
+.error-container {
+            background-color: #ffcccc;
+            color: #cc0000;
+            padding: 10px 20px;
+            border-bottom: 2px solid #cc0000;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+.error-message {
+        margin: 0;
+        font-weight: bold;
+ }
+
+</style>
+
+
+
+
+
+
+
+<section class="hero-wrap js-fullheight" style="background-image: url('/static/images/bg_3.jpg');" data-section="home" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <!-- Other content within the hero section goes here -->
+  </section>
+    <div class="content-section container1">
+        <h1>Equipment Bill</h1>
+        <fieldset class="form-group" style="color:black">
+
+        
+        <div class="form-group">
+            <label for="total_equip_price">Total Price:</label>
+            <input class="form-control" type="text" id="total_equip_price" name="total_equip_price" value="{{ total_equip_price }}" readonly>
+        </div>
+        <p><button type="add" class="btn btn-outline-info"><a href="/equipments">Add</a></button></p>
+            <form action="{{ url_for('buy_equipment') }}" method ="POST">
+                <button type="submit" class="btn btn-outline-info">Done</button>
+            </form>
+            </fieldset>
+          
+    </div>
+    {%endblock content%}

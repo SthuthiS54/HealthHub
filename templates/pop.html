@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Message</title>
+    <style>
+        /* Add your CSS styles for the pop-up message here */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <h2>Transaction Successful</h2>
+        <p>Transaction ID: {{ transaction_id }}</p>
+        <p>Total amount received: {{ total_equip_price }}</p>
+    </div>
+    <script>
+        // JavaScript code to redirect to the home page after 3 seconds
+        setTimeout(function() {
+            window.location.href = "/";
+        }, 2000); // Adjust the delay (in milliseconds) as needed
+    </script>
+</body>
+</html>

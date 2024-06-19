@@ -1,0 +1,253 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.img{
+    height:100vh;
+    background-image: url('/static/images/bg_img.png');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    filter:blur(5px);
+    z-index:-1;
+}
+
+h2{
+  padding-top: 1.5rem;
+}
+
+a{
+  color:#000000;
+}
+
+a:hover{
+  color: #60da57;
+  text-decoration: none;
+}
+
+.form-control{
+  background-color: #f8f9fa;
+  padding: 5px;
+  margin-bottom: 1.3rem;
+}
+
+.container1 {
+    font-weight: bold;
+    height: 600px;
+    width: 1200px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; /* Adjust flex direction to stack elements vertically */
+    align-items: center; /* Center align items horizontally */
+    justify-content: space-around;
+    border: 2px solid black;
+    border-radius: 10px;
+    position: absolute;
+    top: 24%;
+    left: 12%;
+    right: 15%;
+    bottom: 25%;
+    z-index: 2;
+    overflow-y: auto;
+}
+
+.form-row {
+    display: flex;
+    width: 1100px;
+    justify-content: space-between; /* Adjust spacing between form fields */
+}
+
+.form-group {
+    flex: 1; /* Make each form group take equal width within the container */
+    margin-right: 10px; /* Add margin between form groups */
+}
+
+.box:hover{
+    box-shadow: 2px 2px 10px grey; 
+}  
+
+
+.form-control:focus {
+
+    color: #000000;
+    background-color: #ffffff;
+    border: 3px solid #17ae35;
+    outline: 0;
+    box-shadow: 2px 2px 10px grey;
+
+}
+
+.btn{
+    color: white;
+  padding: 0.6rem 1.2rem;
+  background: #da5767;
+  border: 2px solid #da5767;
+}
+
+.btn-primary:hover { 
+    color: white;  
+    background-color: rgb(14, 204, 14);
+    border-color: white;
+    transition: .3s;
+
+}
+
+.form-control::placeholder{
+    height: 5px;
+    width: 100px;
+    font-size: 15px;
+}
+</style>
+
+
+
+
+
+
+
+<section class="hero-wrap js-fullheight" style="background-image: url('/static/images/bg_3.jpg');" data-section="home" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <!-- Other content within the hero section goes here -->
+  </section>
+
+<div class="content-section container1">
+    <form method="POST" action="{{url_for('add_research_route')}}">
+        {{ form.csrf_token }}
+
+        <fieldset class="form-group" style="color:black">
+            <legend class="border-bottom mb=4">Add Intern  </legend>
+            
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    {{ form.r_name.label(class="form-control-label")}}
+                    {% if form.r_name.errors %}
+                    {{ form.r_name(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.r_name.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.r_name(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+
+
+                <div class="form-group col-md-8">
+                    {{ form.r_address.label(class="form-control-label")}}
+                    {% if form.r_address.errors %}
+                    {{ form.r_address(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.r_address.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.r_address(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+                
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    {{ form.r_gender.label(class="form-control-label")}}
+                    {% if form.r_gender.errors %}
+                    {{ form.r_gender(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.r_gender.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.r_gender(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+
+                
+            
+                <div class="form-group col-md-3">
+                    {{ form.r_stiphend.label(class="form-control-label")}}
+                    {% if form.r_stiphend.errors %}
+                    {{ form.r_stiphend(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.r_stiphend.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.r_stiphend(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+            
+                <div class="form-group col-md-6">
+                    {{ form.r_field.label(class="form-control-label")}}
+                    {% if form.r_field.errors %}
+                    {{ form.r_field(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.r_field.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.r_field(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    {{ form.r_joining.label(class="form-control-label")}}
+                    {% if form.r_joining.errors %}
+                    {{ form.r_joining(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.r_joining.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.r_joining(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+                
+                <div class="form-group col-md-4">
+                    {{ form.r_age.label(class="form-control-label")}}
+                    {% if form.r_age.errors %}
+                    {{ form.r_age(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.r_age.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.r_age(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+                <div class="form-group col-md-4"></div>
+            </div>    
+            
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info")}}
+            </div>
+            <div class="border-top pt-3">
+                <medium class="text-muted">
+                </medium>
+             </div>
+        </fieldset>
+    </form>
+ </div> 
+{%endblock content%}
+
+	
+
+
+
+

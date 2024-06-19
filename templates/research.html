@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<style>
+    h2 {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .table-bordered {
+        border: 1px solid #ddd !important;
+    }
+
+    table caption {
+        padding: .5em 0;
+    }
+
+    @media screen and (max-width: 767px) {
+        table caption {
+            display: none;
+        }
+    }
+
+    .p {
+        text-align: center;
+        padding-top: 140px;
+        font-size: 14px;
+    }
+
+    th {
+        text-align: center;
+    }
+</style>
+
+<br><br><br>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xs-12">
+            <h2>Research Interns Details</h2>
+            <div class="table-responsive" data-pattern="priority-columns">
+                <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality"
+                    class="table table-bordered table-hover">
+                    <thead>
+                        <th>R_ID</th>
+                        <th>R_NAME</th>
+                        <th>R_AGE</th>
+                        <th>R_ADDRESS</th>
+                        <th>R_JOINING</th>
+                        <th>R_STIPHEND</th>
+                        <th>R_FIELD</th>
+                        <th>R_GENDER</th>
+                    </thead>
+                    <tbody>
+                        {% for R_interns_details in research %}
+                        <tr>
+                            <td>{{ R_interns_details.r_id }}</td>
+                            <td>{{ R_interns_details.r_name }}</td>
+                            <td>{{R_interns_details.r_age}}</td>
+                            <td>{{ R_interns_details.r_address}}</td>
+                            <td>{{ R_interns_details. r_joining }}</td>
+                            <td>{{ R_interns_details.r_stiphend }}</td>
+                            <td>{{ R_interns_details.r_field}}</td>
+                            <td>{{ R_interns_details.r_gender}}</td>
+                        </tr>
+                         {% endfor %}
+                    </tbody>
+
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div><!-- end of .table-responsive -->
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
